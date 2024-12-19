@@ -19,21 +19,21 @@ namespace Restaurants.Application.Dtos
         public string? ZipCode { get; set; }
         public List<DishDto>? Dishes { get; set; } = [];
 
-        public static RestaurantDto FromRestaurant(Restaurant restaurant)
-        {
+        //public static RestaurantDto FromRestaurant(Restaurant restaurant)
+        //{
 
-            return new RestaurantDto()
-            {
-                Id = restaurant.Id,
-                Name = restaurant.Name,
-                Description = restaurant.Description,
-                Category = restaurant.Category,
-                HasDelivery = restaurant.HasDelivery,
-                City = restaurant.Address?.City,
-                Street = restaurant.Address?.Street,
-                ZipCode = restaurant.Address?.ZipCode,
-                Dishes = restaurant.Dishes.Select(DishDto.FromEntity).ToList()
-            };
-        }
+        //    return new RestaurantDto()
+        //    {
+        //        Id = restaurant.Id,
+        //        Name = restaurant.Name,
+        //        Description = restaurant.Description,
+        //        Category = restaurant.Category,
+        //        HasDelivery = restaurant.HasDelivery,
+        //        City = restaurant.Address?.City,
+        //        Street = restaurant.Address?.Street,
+        //        ZipCode = restaurant.Address?.ZipCode,
+        //        Dishes = restaurant.Dishes.Select(DishDto.FromEntity).ToList()
+        //    };
+        //}
     }
 }

@@ -11,17 +11,17 @@ namespace Restaurants.Application.Dtos
 
         public int? Kilocalories { get; set; }
 
-        public static DishDto FromEntity(Dish dish)
-        {
-            return new DishDto()
-            {
-                Id = dish.Id,
-                Name = dish.Name,
-                Description = dish.Description,
-                Price = dish.Price,
-                Kilocalories = dish.Kilocalories
-            };
-        }
+        //public static DishDto FromEntity(Dish dish)
+        //{
+        //    return new DishDto()
+        //    {
+        //        Id = dish.Id,
+        //        Name = dish.Name,
+        //        Description = dish.Description,
+        //        Price = dish.Price,
+        //        Kilocalories = dish.Kilocalories
+        //    };
+        //}
 
     }
 }
