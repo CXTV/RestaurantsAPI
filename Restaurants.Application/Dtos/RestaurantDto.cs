@@ -17,10 +17,11 @@ namespace Restaurants.Application.Dtos
         public string? City { get; set; }
         public string? Street { get; set; }
         public string? ZipCode { get; set; }
-        public List<DishDto> Dishes { get; set; } = new List<DishDto>();
+        public List<DishDto>? Dishes { get; set; } = [];
 
         public static RestaurantDto FromRestaurant(Restaurant restaurant)
         {
+
             return new RestaurantDto()
             {
                 Id = restaurant.Id,
@@ -31,6 +32,7 @@ namespace Restaurants.Application.Dtos
                 City = restaurant.Address?.City,
                 Street = restaurant.Address?.Street,
                 ZipCode = restaurant.Address?.ZipCode,
+                Dishes = restaurant.Dishes.Select(DishDto.FromEntity).ToList()
             };
         }
     }

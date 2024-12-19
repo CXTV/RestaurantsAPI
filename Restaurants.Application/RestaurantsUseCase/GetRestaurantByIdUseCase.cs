@@ -28,10 +28,10 @@ namespace Restaurants.Application.RestaurantsUseCase
         public async Task<RestaurantDto> Execute(int id)
         {
             logger.LogInformation($"Getting restaurant by id:{id}");
-            var restaurant = await restaurantsRepository.GetRestaurantById(id);
+            var restaurant = await restaurantsRepository.GetRestaurantByIdAsync(id);
             var restaurantDto = RestaurantDto.FromRestaurant(restaurant);
 
-            return restaurantDto;
+            return restaurantDto??new RestaurantDto();
         }
     }
 }

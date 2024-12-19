@@ -1,5 +1,4 @@
 ﻿using Restaurants.Application.Dtos;
-using Restaurants.Domain.Models;
 
 namespace Restaurants.Application.RestaurantsUseCase
 {
