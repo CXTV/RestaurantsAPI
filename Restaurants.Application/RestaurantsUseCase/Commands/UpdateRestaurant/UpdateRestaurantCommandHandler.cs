@@ -23,7 +23,6 @@ namespace Restaurants.Application.RestaurantsUseCase.Commands.UpdateRestaurant
             IRestaurantsRepository restaurantsRepository,
             ILogger<UpdateRestaurantCommandHandler> logger,
             IMapper mapper
-
         )
         {
             this.restaurantsRepository = restaurantsRepository;
@@ -34,7 +33,7 @@ namespace Restaurants.Application.RestaurantsUseCase.Commands.UpdateRestaurant
         public async Task<bool> Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
         {
             {
-                logger.LogInformation($"Update restaurant by id:{request.Id}");
+                logger.LogInformation("Update restaurant by id:{RestaurantId} with{@UpdateRestaurant}",request.Id,request);
                 var restaurant = await restaurantsRepository.GetRestaurantByIdAsync(request.Id);
                 if (restaurant is null)
                     return false;
@@ -43,5 +42,6 @@ namespace Restaurants.Application.RestaurantsUseCase.Commands.UpdateRestaurant
                 await restaurantsRepository.UpdateRestaurant();
                 return true;
             }
+        }
     }
 }

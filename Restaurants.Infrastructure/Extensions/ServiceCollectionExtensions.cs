@@ -15,7 +15,7 @@ namespace Restaurants.Infrastructure.Extensions
             var connectionString = configuration.GetConnectionString("RestaurantsDB");
             services.AddDbContext<RestaurantsDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(connectionString).EnableSensitiveDataLogging();
             });
 
             services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
