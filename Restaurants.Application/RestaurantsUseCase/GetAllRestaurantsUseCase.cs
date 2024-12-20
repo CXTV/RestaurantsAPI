@@ -29,8 +29,8 @@ namespace Restaurants.Application.RestaurantsUseCase
         {
             logger.LogInformation("Getting all restaurants");
             var restaurants = await restaurantsRepository.GetAllRestaurantsAsync();
-            //var restaurantsDto = restaurants.Select(RestaurantDto.FromRestaurant);
 
+            //var restaurantsDto = restaurants.Select(RestaurantDto.FromRestaurant);
             var restaurantsDto = mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 
             return restaurantsDto;

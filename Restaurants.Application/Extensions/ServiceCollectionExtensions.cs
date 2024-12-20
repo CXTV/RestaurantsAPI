@@ -10,6 +10,7 @@ namespace Restaurants.Application.Extensions
         {
             services.AddScoped<IGetAllRestaurantsUseCase, GetAllRestaurantsUseCase>();
             services.AddScoped<IGetRestaurantByIdUseCase, GetRestaurantByIdUseCase>();
+            services.AddScoped<ICreateRestaurantUseCase, CreateRestaurantUseCase>();
 
             services.AddAutoMapper(typeof(ServiceCollectionExtensions).Assembly);
         }

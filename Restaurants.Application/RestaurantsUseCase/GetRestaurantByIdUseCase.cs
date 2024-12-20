@@ -2,12 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Restaurants.Application.Dtos;
 using Restaurants.Application.Restaurants;
-using Restaurants.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Restaurants.Application.RestaurantsUseCase
 {

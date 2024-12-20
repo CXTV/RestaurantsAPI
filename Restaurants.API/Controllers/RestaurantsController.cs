@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Restaurants.Application.Dtos;
 using Restaurants.Application.Restaurants;
 using Restaurants.Application.RestaurantsUseCase;
 
@@ -12,16 +13,19 @@ namespace Restaurants.API.Controllers
 
         private readonly IGetAllRestaurantsUseCase getAllRestaurantsUseCase;
         private readonly IGetRestaurantByIdUseCase getRestaurantByIdUseCase;
+        private readonly ICreateRestaurantUseCase createRestaurantUseCase;
 
 
         public RestaurantsController
         (
             IGetAllRestaurantsUseCase getAllRestaurantsUseCase,
-            IGetRestaurantByIdUseCase getRestaurantByIdUseCase
+            IGetRestaurantByIdUseCase getRestaurantByIdUseCase,
+            ICreateRestaurantUseCase createRestaurantUseCase
         )
         {
             this.getAllRestaurantsUseCase = getAllRestaurantsUseCase;
             this.getRestaurantByIdUseCase = getRestaurantByIdUseCase;
+            this.createRestaurantUseCase = createRestaurantUseCase;
         }
 
         [HttpGet]
@@ -36,6 +40,14 @@ namespace Restaurants.API.Controllers
         {
             var result = await getRestaurantByIdUseCase.Execute(id);
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantDto createRestaurantDto) 
+        {
+            int id = await createRestaurantUseCase.Execute(createRestaurantDto);
+
+            return CreatedAtAction(nameof(GetById), new { id }, null);
         }
     }
 }
