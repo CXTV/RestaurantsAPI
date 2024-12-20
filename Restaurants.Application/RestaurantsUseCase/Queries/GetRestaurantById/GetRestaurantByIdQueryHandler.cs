@@ -26,12 +26,10 @@ namespace Restaurants.Application.RestaurantsUseCase.Queries.GetRestaurantById
             this.mapper = mapper;
         }
 
-
         public async Task<RestaurantDto> Handle(GetRestaurantByIdQuery request, CancellationToken cancellationToken)
         {
             logger.LogInformation($"Getting restaurant by id:{request.Id}");
             var restaurant = await restaurantsRepository.GetRestaurantByIdAsync(request.Id);
-            //var restaurantDto = RestaurantDto.FromRestaurant(restaurant);
             var restaurantDto = mapper.Map<RestaurantDto>(restaurant);
 
             return restaurantDto ?? new RestaurantDto();
