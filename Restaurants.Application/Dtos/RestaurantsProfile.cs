@@ -1,5 +1,6 @@
 ﻿
 using AutoMapper;
+using Restaurants.Application.RestaurantsUseCase.Commands.CreateRestaurant;
 using Restaurants.Domain.Models;
 
 namespace Restaurants.Application.Dtos
@@ -15,7 +16,7 @@ namespace Restaurants.Application.Dtos
                 .ForMember(d => d.ZipCode, opt => opt.MapFrom(src => src.Address == null ? null : src.Address.ZipCode))
                 .ForMember(d => d.Dishes, opt => opt.MapFrom(src => src.Dishes));
 
-            CreateMap<CreateRestaurantDto, Restaurant>()
+            CreateMap<CreateRestaurantCommand, Restaurant>()
                 .ForMember(d => d.Address, opt => opt.MapFrom(src => new Address
                 {
                     City = src.City,

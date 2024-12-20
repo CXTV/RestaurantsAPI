@@ -8,11 +8,15 @@ namespace Restaurants.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IGetAllRestaurantsUseCase, GetAllRestaurantsUseCase>();
-            services.AddScoped<IGetRestaurantByIdUseCase, GetRestaurantByIdUseCase>();
-            services.AddScoped<ICreateRestaurantUseCase, CreateRestaurantUseCase>();
+            //services.AddScoped<IGetAllRestaurantsUseCase, GetAllRestaurantsUseCase>();
+            //services.AddScoped<IGetRestaurantByIdUseCase, GetRestaurantByIdUseCase>();
+            //services.AddScoped<ICreateRestaurantUseCase, CreateRestaurantUseCase>();
+            
+            var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
 
-            services.AddAutoMapper(typeof(ServiceCollectionExtensions).Assembly);
+            services.AddAutoMapper(applicationAssembly);
+
         }
     }
 }
