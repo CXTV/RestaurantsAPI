@@ -35,6 +35,12 @@ namespace Restaurants.Infrastructure.Repositories
 
         }
 
+        public Task Delete(Restaurant restaurant)
+        {
+            dbContext.Restaurants.Remove(restaurant);
+            return dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Restaurant>> GetAllRestaurantsAsync()
         {
             //var restaurant = await dbContext.Restaurants.
@@ -53,5 +59,8 @@ namespace Restaurants.Infrastructure.Repositories
 
             return restaurant ?? new Restaurant();
         }
+
+        public Task UpdateRestaurant() => dbContext.SaveChangesAsync();
+
     }
 }
