@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Restaurants.API.Middlewares;
 using Restaurants.Application.Extensions;
+using Restaurants.Domain.Entities;
 using Restaurants.Infrastructure.Extensions;
 using Restaurants.Infrastructure.Seeds;
 using Serilog;
@@ -18,7 +19,6 @@ builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
-
 builder.Host.UseSerilog((context,configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration)
 );
@@ -35,15 +35,15 @@ await seeder.Seed();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseMiddleware<RequestTimeLoggingMiddleware>();
 
-
 app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
 }
+
+app.MapIdentityApi<User>();
 
 app.UseHttpsRedirection();
 
