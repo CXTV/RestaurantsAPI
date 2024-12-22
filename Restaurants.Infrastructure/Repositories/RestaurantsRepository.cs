@@ -53,7 +53,7 @@ namespace Restaurants.Infrastructure.Repositories
                 Include(x => x.Dishes).
                 FirstOrDefaultAsync(x => x.Id == id);
 
-            return restaurant ?? new Restaurant();
+            return restaurant;
         }
 
         public Task UpdateRestaurant() => dbContext.SaveChangesAsync();

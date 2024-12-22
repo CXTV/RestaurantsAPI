@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Restaurants.Application.Dtos;
 using Restaurants.Application.Restaurants;
 using Restaurants.Application.RestaurantsUseCase.Commands.CreateRestaurant;
+using Restaurants.Application.RestaurantsUseCase.Dtos;
 
 namespace Restaurants.Application.RestaurantsUseCase.Queries.GetAllRestaurants
 {

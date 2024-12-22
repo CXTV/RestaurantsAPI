@@ -1,6 +1,6 @@
 ﻿using Restaurants.Domain.Models;
 
-namespace Restaurants.Application.Dtos
+namespace Restaurants.Application.DishesUseCase.Dtos
 {
     public class DishDto
     {

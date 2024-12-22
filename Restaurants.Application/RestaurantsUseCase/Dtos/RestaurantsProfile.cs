@@ -4,15 +4,13 @@ using Restaurants.Application.RestaurantsUseCase.Commands.CreateRestaurant;
 using Restaurants.Application.RestaurantsUseCase.Commands.UpdateRestaurant;
 using Restaurants.Domain.Models;
 
-namespace Restaurants.Application.Dtos
+namespace Restaurants.Application.RestaurantsUseCase.Dtos
 {
-    public class RestaurantsProfile:Profile
+    public class RestaurantsProfile : Profile
     {
 
         public RestaurantsProfile()
         {
-            CreateMap<UpdateRestaurantCommand,Restaurant>();
-            
             CreateMap<Restaurant, RestaurantDto>()
                 .ForMember(d => d.City, opt => opt.MapFrom(src => src.Address == null ? null : src.Address.City))
                 .ForMember(d => d.Street, opt => opt.MapFrom(src => src.Address == null ? null : src.Address.Street))
@@ -27,6 +25,7 @@ namespace Restaurants.Application.Dtos
                     ZipCode = src.ZipCode
                 }));
 
+            CreateMap<UpdateRestaurantCommand, Restaurant>();
 
         }
     }

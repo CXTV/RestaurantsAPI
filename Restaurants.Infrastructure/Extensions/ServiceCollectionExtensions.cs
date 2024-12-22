@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurants.Application.Restaurants;
+using Restaurants.Domain.IRepositories;
 using Restaurants.Infrastructure.Persistence;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeds;
@@ -20,6 +21,7 @@ namespace Restaurants.Infrastructure.Extensions
 
             services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
             services.AddScoped<IRestaurantSeeds, RestaurantSeeds>();
+            services.AddScoped<IDishesRepository, DishesRepository>();
         }
     }
 }

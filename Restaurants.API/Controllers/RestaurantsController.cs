@@ -1,13 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Restaurants.Application.Dtos;
-using Restaurants.Application.Restaurants;
-using Restaurants.Application.RestaurantsUseCase;
 using Restaurants.Application.RestaurantsUseCase.Commands.CreateRestaurant;
 using Restaurants.Application.RestaurantsUseCase.Commands.DeleteRestaurant;
+using Restaurants.Application.RestaurantsUseCase.Commands.UpdateRestaurant;
 using Restaurants.Application.RestaurantsUseCase.Queries.GetAllRestaurants;
 using Restaurants.Application.RestaurantsUseCase.Queries.GetRestaurantById;
-using System.Runtime.CompilerServices;
 
 
 namespace Restaurants.API.Controllers
@@ -16,14 +13,12 @@ namespace Restaurants.API.Controllers
     [Route("api/[controller]")]
     public class RestaurantsController : ControllerBase
     {
-
         private readonly IMediator mediator;
 
         public RestaurantsController(IMediator mediator)
         {
             this.mediator = mediator;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -35,7 +30,7 @@ namespace Restaurants.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = await mediator.Send(new GetRestaurantByIdQuery{ Id= id });
+            var result = await mediator.Send(new GetRestaurantByIdQuery(id));
             return Ok(result);
         }
 
@@ -49,9 +44,17 @@ namespace Restaurants.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById([FromRoute] int id)
         {
-            await mediator.Send(new DeleteRestaurantCommand() { Id = id});
-
-            return Ok("200");
+            await mediator.Send(new DeleteRestaurantCommand(id));
+            return NoContent();
         }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateRestaurant([FromRoute] int id,UpdateRestaurantCommand command)
+        {
+            command.Id = id;
+            await mediator.Send(command);
+            return NoContent();
+        }
+
     }
 }

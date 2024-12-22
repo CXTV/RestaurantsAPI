@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Restaurants.Application.RestaurantsUseCase.Commands.DeleteRestaurant
 {
-    public class DeleteRestaurantCommand:IRequest<bool>
+    public class DeleteRestaurantCommand:IRequest
     {
         public int Id { get; set; }
+        public DeleteRestaurantCommand(int Id)
+        {
+            this.Id = Id;
+        }
     }
 }
