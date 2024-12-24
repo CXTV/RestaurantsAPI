@@ -6,10 +6,11 @@ namespace Restaurants.Application.Users.Commands.UpdateUserDetials
     {
         public DateOnly? DateOfBirth { get; set; }
         public string? Nationality { get; set; }
-        //public UpdateUserDetailsCommand(DateOnly dateOfBirth, string nationality)
-        //{
-        //    DateOfBirth = dateOfBirth;
-        //    Nationality = nationality;
-        //}
+
+        public UpdateUserDetailsCommand(DateOnly dateOfBirth, string nationality)
+        {
+            DateOfBirth = dateOfBirth;
+            Nationality = nationality;
+        }
     }
 }

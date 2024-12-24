@@ -31,7 +31,7 @@ namespace Restaurants.Application.RestaurantsUseCase.Commands.DeleteRestaurant
             logger.LogInformation("Delete restaurant by id:{RestaurantId}",request.Id);
             var restaurant = await restaurantsRepository.GetRestaurantByIdAsync(request.Id);
             if (restaurant is null)
-                throw new NotFoundException($"Restaurant id {request.Id} not found");
+                throw new NotFoundException(nameof(restaurant), $"Restaurant id {request.Id} not found");
             await restaurantsRepository.Delete(restaurant);
         }
     }

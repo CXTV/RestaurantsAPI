@@ -37,7 +37,7 @@ namespace Restaurants.Application.RestaurantsUseCase.Commands.UpdateRestaurant
                 logger.LogInformation("Update restaurant by id:{RestaurantId} with{@UpdateRestaurant}",request.Id,request);
                 var restaurant = await restaurantsRepository.GetRestaurantByIdAsync(request.Id);
                 if (restaurant is null)
-                    throw new NotFoundException($"Restaurant id {request.Id} not found");
+                    throw new NotFoundException(nameof(restaurant), $"Restaurant id {request.Id} not found");
 
                 restaurant = mapper.Map(request, restaurant);
                 await restaurantsRepository.UpdateRestaurant();

@@ -32,7 +32,7 @@ namespace Restaurants.Application.RestaurantsUseCase.Queries.GetRestaurantById
             logger.LogInformation("Getting restaurant by id:{RestaurantId}",request.Id);
 
             var restaurant = await restaurantsRepository.GetRestaurantByIdAsync(request.Id)
-                                ??throw new NotFoundException($"Restaurant id {request.Id} not found");
+                                ??throw new NotFoundException(nameof(request.Id),$"Restaurant id {request.Id} not found");
             
             var restaurantDto = mapper.Map<RestaurantDto>(restaurant);
 

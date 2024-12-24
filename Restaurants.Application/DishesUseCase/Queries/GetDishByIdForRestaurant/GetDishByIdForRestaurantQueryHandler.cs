@@ -39,9 +39,9 @@ namespace Restaurants.Application.DishesUseCase.Queries.GetDishByIdForRestaurant
                 request.DishId,
                 request.RestaurantId);
             var restaurant = await restaurantsRepository.GetRestaurantByIdAsync(request.RestaurantId);
-            if (restaurant == null) throw new NotFoundException("restaurant not found");
+            if (restaurant == null) throw new NotFoundException(nameof(restaurant),"restaurant not found");
             var dish = restaurant.Dishes.FirstOrDefault(d => d.Id == request.DishId);
-            if (dish == null) throw new NotFoundException("dish not found");
+            if (dish == null) throw new NotFoundException(nameof(restaurant), "dish not found");
             var result = mapper.Map<DishDto>(dish);
             return result;
         }

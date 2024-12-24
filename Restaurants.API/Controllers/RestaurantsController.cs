@@ -6,6 +6,7 @@ using Restaurants.Application.RestaurantsUseCase.Commands.DeleteRestaurant;
 using Restaurants.Application.RestaurantsUseCase.Commands.UpdateRestaurant;
 using Restaurants.Application.RestaurantsUseCase.Queries.GetAllRestaurants;
 using Restaurants.Application.RestaurantsUseCase.Queries.GetRestaurantById;
+using Restaurants.Domain.Constants;
 
 
 namespace Restaurants.API.Controllers
@@ -31,6 +32,7 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "HasNationality")]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await mediator.Send(new GetRestaurantByIdQuery(id));
@@ -38,6 +40,7 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = UserRoles.Owner)]
         public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantCommand command) 
         {
             int id = await mediator.Send(command);

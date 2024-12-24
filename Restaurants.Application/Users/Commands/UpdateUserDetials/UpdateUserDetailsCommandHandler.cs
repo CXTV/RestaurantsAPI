@@ -35,7 +35,7 @@ namespace Restaurants.Application.Users.Commands.UpdateUserDetials
 
             if (dbUser == null)
             {
-                throw new NotFoundException("User not found");
+                throw new NotFoundException(nameof(dbUser),"dbUser Not Found");
             }
             //3.更新用户信息
             dbUser.DateOfBirth = request.DateOfBirth;
