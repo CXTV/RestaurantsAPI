@@ -9,5 +9,7 @@ namespace Restaurants.Application.Restaurants
         Task<IEnumerable<Restaurant>> GetAllRestaurantsAsync();
         Task<Restaurant> GetRestaurantByIdAsync(int id);
         Task UpdateRestaurant( );
+        Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase);
+
     }
 }

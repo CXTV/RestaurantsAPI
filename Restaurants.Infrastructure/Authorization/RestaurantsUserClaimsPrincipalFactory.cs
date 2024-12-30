@@ -26,6 +26,7 @@ namespace Restaurants.Infrastructure.Authorization
 
         public override async Task<ClaimsPrincipal> CreateAsync(User user)
         {
+    
             var id = await GenerateClaimsAsync(user);
             if (user.Nationality != null)
             {
@@ -35,6 +36,7 @@ namespace Restaurants.Infrastructure.Authorization
             {
                 id.AddClaim(new Claim(AppClaimTypes.DateOfBirth, user.DateOfBirth.Value.ToString("yyyy-MM-dd")));
             }
+            //返回一个 ClaimsPrincipal，用于后续的身份验证和授权操作
             return new ClaimsPrincipal(id);
         }
     }

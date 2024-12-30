@@ -9,16 +9,16 @@ using Restaurants.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+//builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddEndpointsApiExplorer();
 
 builder.AddPresentation();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
-var app = builder.Build();
 
+var app = builder.Build();
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeds>();
 
@@ -27,8 +27,8 @@ await seeder.Seed();
 // Configure the HTTP request pipeline.
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseMiddleware<RequestTimeLoggingMiddleware>();
 
+app.UseMiddleware<RequestTimeLoggingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
@@ -39,7 +39,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGroup("api/identity")
-    .WithTags("Identity")
     .MapIdentityApi<User>();
 
 app.UseAuthorization();

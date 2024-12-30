@@ -25,9 +25,9 @@ namespace Restaurants.API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] GetAllRestaurantsQuery query)
         {
-            var result = await mediator.Send(new GetAllRestaurantsQuery());
+            var result = await mediator.Send(query);
             return Ok(result);
         }
 

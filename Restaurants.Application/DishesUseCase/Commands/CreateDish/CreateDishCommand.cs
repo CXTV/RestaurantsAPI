@@ -1,13 +1,8 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurants.Application.DishesUseCase.Commands.CreateDish
 {
-    public class CreateDishCommand:IRequest
+    public class CreateDishCommand:IRequest<int >
     {
 
         public int restaurantId { get; set; }

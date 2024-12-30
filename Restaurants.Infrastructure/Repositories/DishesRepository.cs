@@ -15,7 +15,6 @@ namespace Restaurants.Infrastructure.Repositories
 
         public async Task<int> CreateDishAsync(Dish dish)
         {
-
             using var transaction = await dbContext.Database.BeginTransactionAsync();
             try
             {
@@ -32,8 +31,12 @@ namespace Restaurants.Infrastructure.Repositories
                 throw;
             }
 
+        }
 
-
+        public async Task Delete(List<Dish> dishes)
+        {
+            dbContext.Dishes.RemoveRange(dishes);
+            await dbContext.SaveChangesAsync();
         }
     }
 }
